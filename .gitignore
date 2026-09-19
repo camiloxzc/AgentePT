@@ -1,0 +1,20 @@
+# archivo de variables de entorno (tiene la api key)
+.env
+
+# cache de python
+__pycache__/
+*.pyc
+*.pyo
+
+# entorno virtual (si lo llegan a crear)
+venv/
+.venv/
+
+# archivos del sistema
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ide
+.vscode/
+.idea/

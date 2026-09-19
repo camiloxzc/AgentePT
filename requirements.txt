@@ -1,0 +1,6 @@
+# Dependencias del proyecto Prueba Técnica
+# Versiones probadas y verificadas en Python 3.13.3
+
+streamlit==1.64.0       # Interfaz web de chat
+groq==1.7.0             # SDK oficial de Groq para conectar con el modelo de lenguaje
+python-dotenv==1.2.3    # Carga la API key desde el archivo .env
