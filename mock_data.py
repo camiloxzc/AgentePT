@@ -8,22 +8,20 @@ GUÍA DE CAMBIOS EN SESIÓN
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 ✅ PUEDE MODIFICARSE EN MEMORIA DURANTE LA SESIÓN:
-   - CLIENTES_REGISTRADOS → el agente agrega entradas nuevas cuando registra
-     un cliente nuevo con registrar_cliente_nuevo(). Esos clientes existen
-     solo mientras la app esté abierta.
-   - PEDIDOS              → el agente puede cambiar la dirección de entrega
-     de un pedido usando actualizar_direccion_entrega(). El cambio vive en RAM.
-   - _contador_tickets    → sube en 1 cada vez que se abre un ticket de garantía
-     con registrar_solicitud_garantia(). Se reinicia al cerrar la app.
+   - CLIENTES_REGISTRADOS → el agente agrega entradas cuando registra un cliente
+     nuevo con registrar_cliente_nuevo().
+   - PEDIDOS              → se pueden crear pedidos nuevos con crear_pedido()
+     y modificar direcciones con actualizar_direccion_entrega().
+   - GARANTIAS            → al crear un pedido nuevo se genera su garantía en memoria.
+   - _contador_tickets    → sube en 1 con cada ticket de soporte técnico.
+   - _contador_pedidos    → sube en 1 con cada pedido nuevo que se registra.
 
-❌ SOLO LECTURA — el agente NO puede agregar ni modificar estos datos:
-   - PRODUCTOS  → el catálogo es fijo. No hay herramienta para agregar productos.
-                  En un sistema real vendría de una base de datos de inventario.
-   - GARANTIAS  → las coberturas están hardcodeadas. No se pueden crear garantías
-                  nuevas desde el agente.
+❌ SOLO LECTURA:
+   - PRODUCTOS  → el catálogo de productos es fijo (no hay función para meter productos).
+                  En un entorno productivo esto vendría de un inventario real o ERP.
 
-    TODO se pierde al reiniciar la app porque no hay persistencia real.
-    Eso es intencional — este código es solo para demostración técnica.
+    TODO se pierde al reiniciar la app porque no hay persistencia real en BD/disco.
+    Eso es intencional — este código es para demostración técnica.
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 """
 
@@ -131,9 +129,8 @@ PRODUCTOS = [
     },
 ]
 
-# ✅ MODIFICABLE EN SESIÓN — actualizar_direccion_entrega() puede cambiar
-# el campo "direccion" de cualquier pedido en memoria mientras la app esté abierta.
-# ❌ No se pueden agregar pedidos nuevos.
+# ✅ MODIFICABLE EN SESIÓN — se pueden registrar pedidos nuevos con crear_pedido()
+# y modificar direcciones con actualizar_direccion_entrega() en memoria RAM.
 PEDIDOS = {
     "PED-1024": {
         "estado": "En reparto",
